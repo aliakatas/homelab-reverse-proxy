@@ -1,0 +1,31 @@
+global:
+  checkNewVersion: true
+  sendAnonymousUsage: false
+
+log:
+  level: "DEBUG"
+
+api:
+  dashboard: true
+  insecure: true  # Change to false and use a secure method for authentication
+
+entryPoints:
+  websecure:
+    address: ":443"
+
+providers:
+  docker:
+    # exposedByDefault: false
+    network: traefik-net
+
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      tlsChallenge: true
+      email: "<email@example.com>"
+      storage: "/letsencrypt/acme.json"
+
+
+
+
+

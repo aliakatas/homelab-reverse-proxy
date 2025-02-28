@@ -7,8 +7,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.whoami.rule=Host(`<your.domain.com>`) && Path(`/whoami`)"
-      - "traefik.http.routers.whoami.entrypoints=apachesecure"
-      - "traefik.http.routers.whoami.tls.certresolver=apacheresolver"
+      - "traefik.http.routers.whoami.entrypoints=websecure"
+      - "traefik.http.routers.whoami.tls.certresolver=letsencrypt"
 
 networks:
   default:

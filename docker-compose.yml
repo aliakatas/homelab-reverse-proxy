@@ -1,24 +1,14 @@
 services:
   traefik:
     image: "traefik:latest"
-    container_name: "traefik"
-    # networks:
-    #   - traefik-net
-    command:
-      - "--log.level=DEBUG"
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--entryPoints.apachesecure.address=:443"
-      - "--certificatesResolvers.apacheresolver.acme.tlsChallenge=true"
-      - "--certificatesResolvers.apacheresolver.acme.email=<email@example.com>"
-      - "--certificatesResolvers.apacheresolver.acme.storage=/letsencrypt/acme.json"
+    container_name: "traefik" 
     ports:
       - "443:443"
       - "8080:8080"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "/mnt/letsencrypt:/letsencrypt"
-      # - ./traefik.yml:/etc/traefik/traefik.yml:ro
+      - ./traefik.yml:/etc/traefik/traefik.yml:ro
 
   apache:
     image: "httpd:latest"
@@ -26,9 +16,9 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.apache.rule=Host(`<your.domain.com>`)
-      - traefik.http.routers.apache.entrypoints=apachesecure
+      - traefik.http.routers.apache.entrypoints=websecure
       - traefik.http.routers.apache.tls=true
-      - traefik.http.routers.apache.tls.certresolver=apacheresolver
+      - traefik.http.routers.apache.tls.certresolver=letsencrypt
 
 networks:
   default:
