@@ -1,0 +1,16 @@
+services:
+  whoami:
+    image: traefik/whoami
+    container_name: whoami
+    # networks:
+    #   - traefik-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`<your.domain.com>`) && Path(`/whoami`)"
+      - "traefik.http.routers.whoami.entrypoints=apachesecure"
+      - "traefik.http.routers.whoami.tls.certresolver=apacheresolver"
+
+networks:
+  default:
+    external: true
+    name: traefik-net
