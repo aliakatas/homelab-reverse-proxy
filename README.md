@@ -69,7 +69,7 @@ Deploy it:
 ```bash
 docker compose up -d
 ```
-Then visit **`https://whoami.yourdomain.com`**.
+Then visit **`https://yourdomain.com/whoami`**.
 
 ---
 
