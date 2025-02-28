@@ -3,6 +3,7 @@ Deploying **Traefik** as a container is the best approach, especially since the 
 This keeps everything modular, easier to manage, and makes updates simpler.  
 
 This setup assumes:
+
 ✅ **Docker + Docker Compose**  
 ✅ **automatic HTTPS with Let's Encrypt**  
 ✅ **dynamic routing based on container labels**  
